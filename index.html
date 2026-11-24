@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d62300">
+  <meta name="description" content="Carte mentale interactive pour préparer l'examen oral Burger King M2 : stratégie, concept, média, budget, planning et objections.">
+  <title>Burger King — Carte mentale de l'oral</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Retour en haut">
+        <span class="brand-mark" aria-hidden="true">BK</span>
+        <span class="brand-copy"><strong>EXAMEN ORAL M2</strong><small>FICHE DE PRÉPARATION</small></span>
+      </a>
+      <div class="header-actions">
+        <span class="status-pill"><i></i> MODE RÉVISION</span>
+        <button class="button button-light button-small" id="printBtn" type="button" title="Imprimer ou enregistrer en PDF">Imprimer / PDF <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="eyebrow-line"></span> BURGER KING® · BRIEF CLIENT</div>
+        <h1>FAITS AVEC<br><em>AMOUR.</em></h1>
+        <p class="hero-lead">Ta carte mentale pour défendre la recommandation de l'agence, maîtriser les chiffres et répondre à une objection tirée au sort.</p>
+        <div class="hero-meta">
+          <span>6 blocs à maîtriser</span><b>·</b><span>17 objections d'entraînement</span><b>·</b><span>4–5 min à l'oral</span>
+        </div>
+      </div>
+      <div class="hero-stamp" aria-label="2,2 millions d'euros hors taxes">
+        <span>BUDGET GLOBAL</span><strong>2,2 M€</strong><small>HT · CAMPAGNE</small>
+        <div class="stamp-ring"></div>
+      </div>
+      <div class="hero-bottom" aria-hidden="true"><span>STRATÉGIE</span><span>CRÉATION</span><span>MÉDIA</span><span>BUSINESS</span></div>
+    </section>
+
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a class="nav-link active" href="#mindmap">01 <span>Carte mentale</span></a>
+      <a class="nav-link" href="#objections">02 <span>Objections</span></a>
+      <a class="nav-link" href="#oral">03 <span>Prise de parole</span></a>
+      <a class="nav-link" href="#vigilance">04 <span>Points de vigilance</span></a>
+      <a class="nav-link" href="#assets">05 <span>Assets</span></a>
+    </nav>
+
+    <section class="section section-map" id="mindmap">
+      <div class="section-heading">
+        <div><div class="eyebrow eyebrow-dark">VUE D'ENSEMBLE</div><h2>La carte mentale</h2><p class="section-subtitle">Pars du centre, puis ouvre les branches. Chaque bloc rassemble les informations qui vont ensemble.</p></div>
+        <div class="map-hint"><span class="hint-icon">＋</span> Clique sur une branche pour afficher les détails</div>
+      </div>
+      <div class="mindmap">
+        <div class="mindmap-root">
+          <span class="root-kicker">LE DÉFI À RÉSOUDRE</span>
+          <strong>Relancer <em>Les Masters</em></strong>
+          <span>Créer un événement · Générer du trafic restaurant · Booster les ventes</span>
+        </div>
+        <div class="trunk" aria-hidden="true"><span></span></div>
+        <div class="branch-grid" id="topicGrid" aria-label="Branches de la carte mentale"></div>
+      </div>
+      <div class="legend"><span><i class="legend-dot dot-red"></i> Enjeu client</span><span><i class="legend-dot dot-gold"></i> Stratégie & création</span><span><i class="legend-dot dot-orange"></i> Activation média</span><span><i class="legend-dot dot-violet"></i> Budget</span><span><i class="legend-dot dot-teal"></i> Planning</span><span><i class="legend-dot dot-ink"></i> Entretien</span></div>
+    </section>
+
+    <section class="section objection-section" id="objections">
+      <div class="section-heading objection-heading">
+        <div><div class="eyebrow eyebrow-dark">ENTRAÎNEMENT CIBLÉ</div><h2>Et si le client objecte…</h2><p class="section-subtitle">Des objections probables construites à partir du brief. Elles ne sont pas une liste officielle fournie par le sujet.</p></div>
+        <button class="button button-red" id="drawBtn" type="button"><span aria-hidden="true">⤨</span> Tirer une objection</button>
+      </div>
+      <div class="tool-row">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Rechercher : budget, chefs, TV, délais…" autocomplete="off"><kbd>⌘ K</kbd></label>
+        <div class="filter-row" id="filters" aria-label="Filtrer les objections">
+          <button class="filter-chip selected" data-filter="all" type="button">Toutes</button>
+          <button class="filter-chip" data-filter="concept" type="button">Concept</button>
+          <button class="filter-chip" data-filter="media" type="button">Média</button>
+          <button class="filter-chip" data-filter="budget" type="button">Budget</button>
+          <button class="filter-chip" data-filter="planning" type="button">Planning</button>
+          <button class="filter-chip" data-filter="performance" type="button">Performance</button>
+          <button class="filter-chip" data-filter="unknown" type="button">Infos manquantes</button>
+        </div>
+      </div>
+      <div class="search-feedback" id="searchFeedback" aria-live="polite">17 objections pour t'entraîner.</div>
+      <div class="objection-grid" id="objectionGrid"></div>
+      <div class="no-results" id="noResults" hidden>Aucun résultat. Essaie un autre mot-clé ou enlève un filtre.</div>
+      <div class="draw-result" id="drawResult" hidden aria-live="polite"></div>
+    </section>
+
+    <section class="section oral-section" id="oral">
+      <div class="section-heading">
+        <div><div class="eyebrow eyebrow-dark">LE JOUR J</div><h2>Ta réponse en 4 à 5 minutes</h2><p class="section-subtitle">Un fil conducteur simple pour rester clair, convaincant et orienté solution.</p></div>
+        <div class="time-badge"><strong>04:30</strong><span>cible de préparation</span></div>
+      </div>
+      <div class="oral-flow" id="oralFlow">
+        <article class="flow-step"><span class="flow-time">00:00–00:30</span><span class="flow-num">01</span><div><h3>ACCUEILLIR</h3><p>Reformule l'objection sans te braquer. Identifie ce qui inquiète réellement le client.</p><blockquote>« Si je comprends bien, votre point de vigilance concerne… »</blockquote></div></article>
+        <article class="flow-step"><span class="flow-time">00:30–01:00</span><span class="flow-num">02</span><div><h3>REPLACER</h3><p>Rappelle le besoin initial et la contrainte du brief liés à la question.</p><blockquote>« Le point de départ du brief était de… tout en préservant… »</blockquote></div></article>
+        <article class="flow-step"><span class="flow-time">01:00–02:30</span><span class="flow-num">03</span><div><h3>DÉFENDRE</h3><p>Donne deux arguments maximum, appuyés sur des faits, des chiffres, le dispositif ou les jalons.</p><blockquote>« Notre recommandation répond à cela pour deux raisons… »</blockquote></div></article>
+        <article class="flow-step"><span class="flow-time">02:30–03:45</span><span class="flow-num">04</span><div><h3>ARBITRER</h3><p>Propose une option réaliste. Explique clairement sa contrepartie et ce qu'elle change.</p><blockquote>« Nous pouvons ajuster…, en contrepartie de… »</blockquote></div></article>
+        <article class="flow-step"><span class="flow-time">03:45–04:30</span><span class="flow-num">05</span><div><h3>OUVRIR & CONCLURE</h3><p>Termine par une décision à prendre ou une information à valider. Ne laisse pas la discussion en suspens.</p><blockquote>« Pour avancer, je vous propose de valider ensemble… »</blockquote></div></article>
+      </div>
+      <div class="oral-bottom-grid">
+        <div class="score-card">
+          <div class="card-overline">GRILLE D'ÉVALUATION</div><h3>20 points au total</h3>
+          <div class="score-row"><span>Pertinence & logique des arguments</span><strong>5 pts</strong><i><b style="width:100%"></b></i></div>
+          <div class="score-row"><span>Faits, budget & jalons</span><strong>5 pts</strong><i><b style="width:100%"></b></i></div>
+          <div class="score-row"><span>Arbitrage, contrepartie & ouverture</span><strong>5 pts</strong><i><b style="width:100%"></b></i></div>
+          <div class="score-row"><span>Posture conseil, fluidité & impact</span><strong>5 pts</strong><i><b style="width:100%"></b></i></div>
+        </div>
+        <div class="phrase-card">
+          <div class="card-overline">LA PHRASE À GARDER EN TÊTE</div>
+          <h3>Ne défends pas une idée à tout prix. Défends l'objectif du client.</h3>
+          <p>Une bonne réponse reconnaît le problème, s'appuie sur le brief, propose un arbitrage et demande une validation.</p>
+          <button class="text-button" id="copyMethod" type="button">Copier la méthode <span aria-hidden="true">↗</span></button>
+          <span class="copy-status" id="copyStatus" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section vigilance-section" id="vigilance">
+      <div class="section-heading">
+        <div><div class="eyebrow eyebrow-dark">SÉCURISER TA CRÉDIBILITÉ</div><h2>Ce que le brief ne dit pas</h2><p class="section-subtitle">Si le client pose une question sur ces sujets, ne fabrique pas une réponse. Reconnais le manque et propose comment le cadrer.</p></div>
+        <span class="warning-mark" aria-hidden="true">!</span>
+      </div>
+      <div class="vigilance-layout">
+        <div class="missing-list" id="missingList"></div>
+        <aside class="safe-answer">
+          <span class="safe-label">RÉPONSE PROFESSIONNELLE</span>
+          <h3>« Le brief ne précise pas encore ce point. »</h3>
+          <p>« Je préfère ne pas avancer un chiffre ou une hypothèse non validée. Je vous propose de confirmer cette donnée avec les équipes concernées, puis de revenir avec une recommandation argumentée et ses impacts. »</p>
+          <span class="safe-foot">Reconnaître une limite + donner une prochaine étape = posture conseil.</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section assets-section" id="assets">
+      <div class="section-heading">
+        <div><div class="eyebrow eyebrow-dark">POUR RÉVISER AVEC LES CRÉATIONS</div><h2>Les assets du brief</h2><p class="section-subtitle">Les liens cliquables retrouvés dans le document original.</p></div>
+      </div>
+      <div class="asset-grid" id="assetGrid"></div>
+      <p class="asset-note">À noter : dans le document fourni, les liens sociaux #1 et #2 renvoient à la même URL Instagram.</p>
+    </section>
+
+    <section class="final-reminder">
+      <div class="reminder-star">✳</div><div><span>TON CAP LE JOUR DE L'ORAL</span><h2>Clair sur les faits. Souple sur les moyens. Ferme sur les objectifs.</h2><p>Tu incarnes le conseil de l'agence : tu fais avancer la décision, tu ne récites pas une fiche.</p></div>
+      <a href="#top" class="back-top" aria-label="Revenir en haut">↑</a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>Préparation examen oral M2 · Burger King®</span><span>Contenu construit à partir du brief transmis · Les pistes de défense sont des propositions d'entraînement.</span></footer>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
