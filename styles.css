@@ -107,6 +107,7 @@ a { color: inherit; }
 .search-box > span { font-size: 23px; }
 .search-box input { width: 100%; min-width: 0; padding: 11px 0; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 12px; }
 .search-box input::placeholder { color: #aaa096; }
+.search-box:focus-within { outline: 3px solid #2383a4; outline-offset: 2px; }
 .search-box kbd { flex: 0 0 auto; padding: 3px 6px; color: #988e83; border: 1px solid #e6ded5; border-radius: 5px; font-size: 9px; }
 .filter-row { display: flex; flex-wrap: wrap; gap: 6px; }
 .filter-chip { padding: 8px 11px; border: 1px solid #e1d7cb; border-radius: 999px; background: transparent; color: #6c6258; font-size: 10px; font-weight: 800; cursor: pointer; }
@@ -279,7 +280,7 @@ a { color: inherit; }
 @media print {
   :root { --cream: #fff; --paper: #fff; }
   body { background: #fff; color: #111; font-size: 10pt; }
-  .site-header, .main-nav, .header-actions, .map-hint, .tool-row, .draw-result, .text-button, .copy-status, .back-top, .skip-link { display: none !important; }
+  .site-header, .main-nav, .header-actions, .map-hint, .tool-row, .draw-result, .text-button, .copy-status, .back-top, .skip-link, #drawBtn { display: none !important; }
   .hero { min-height: 0; padding: 22px 26px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .hero h1 { font-size: 46pt; }
   .hero-stamp { right: 35px; top: 25px; }

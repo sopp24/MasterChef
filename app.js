@@ -33,11 +33,11 @@
             <ul>${group.items.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
           </div>
         `).join("")}
-        <div class="question-tags" aria-label="Questions associées">
+        <div class="question-tags" role="group" aria-label="Questions associées">
           ${topic.questions.map((question) => `<span>${escapeHTML(question)}</span>`).join("")}
         </div>
         ${topic.budget ? `
-          <div class="budget-mini" aria-label="Répartition du budget">
+          <div class="budget-mini" role="group" aria-label="Répartition du budget">
             <div class="budget-strip">${topic.budget.map((item) => `<span style="width:${(item.value / 2200000 * 100).toFixed(3)}%;background:${item.color}" title="${escapeHTML(item.label)} : ${escapeHTML(item.pct)}"></span>`).join("")}</div>
             <div class="budget-legend">${topic.budget.map((item) => `<div><i style="background:${item.color}"></i><span>${escapeHTML(item.label)}</span><strong>${escapeHTML(item.amount)} · ${escapeHTML(item.pct)}</strong></div>`).join("")}</div>
           </div>
@@ -111,15 +111,20 @@
         if (record) visibleObjections.push(record);
       }
     });
+    if (!drawResult.hidden && !visibleObjections.some((item) => item.id === lastDrawId)) drawResult.hidden = true;
     feedback.textContent = `${visible} objection${visible === 1 ? "" : "s"} ${query || activeFilter !== "all" ? "correspondante" + (visible === 1 ? "" : "s") : "pour t'entraîner"}.`;
     noResults.hidden = visible !== 0;
     if (visible === 0) drawResult.hidden = true;
   }
 
   filterButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.classList.contains("selected")));
     button.addEventListener("click", () => {
       activeFilter = button.dataset.filter;
-      filterButtons.forEach((item) => item.classList.toggle("selected", item === button));
+      filterButtons.forEach((item) => {
+        item.classList.toggle("selected", item === button);
+        item.setAttribute("aria-pressed", String(item === button));
+      });
       applyObjectionFilters();
     });
   });
@@ -142,7 +147,8 @@
       if (!card) return;
       const details = $("details", card);
       details.open = true;
-      card.scrollIntoView({ behavior: "smooth", block: "center" });
+      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
     };
     const openLink = $(".draw-open", drawResult);
     openLink.addEventListener("click", openChosen);
@@ -153,6 +159,18 @@
 
   $("#printBtn").addEventListener("click", () => window.print());
 
+  // À l'impression, les navigateurs récents masquent le contenu des <details> fermés
+  // malgré les styles d'impression : on les ouvre le temps de l'impression, puis on restaure.
+  let reopenAfterPrint = [];
+  window.addEventListener("beforeprint", () => {
+    reopenAfterPrint = $$("details:not([open])");
+    reopenAfterPrint.forEach((details) => { details.open = true; });
+  });
+  window.addEventListener("afterprint", () => {
+    reopenAfterPrint.forEach((details) => { details.open = false; });
+    reopenAfterPrint = [];
+  });
+
   const methodText = [
     "1. ACCUEILLIR : reformuler l'objection et identifier le risque.",
     "2. REPLACER : rappeler le besoin initial et la contrainte du brief.",
@@ -160,15 +178,28 @@
     "4. ARBITRER : proposer une option et en expliquer la contrepartie.",
     "5. OUVRIR : obtenir une priorité, une validation ou une décision."
   ].join("\n");
+  // Copie : API Clipboard, avec repli sur execCommand si elle est indisponible (contexte non sécurisé, vieux navigateur).
+  async function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try { await navigator.clipboard.writeText(text); return true; } catch (error) { /* repli ci-dessous */ }
+    }
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+    document.body.appendChild(area);
+    area.select();
+    let copied = false;
+    try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+    document.body.removeChild(area);
+    return copied;
+  }
+  let copyTimer = 0;
   $("#copyMethod").addEventListener("click", async () => {
     const status = $("#copyStatus");
-    try {
-      await navigator.clipboard.writeText(methodText);
-      status.textContent = "Méthode copiée.";
-    } catch (error) {
-      status.textContent = "Copie indisponible sur ce navigateur.";
-    }
-    window.setTimeout(() => { status.textContent = ""; }, 2800);
+    status.textContent = (await copyText(methodText)) ? "Méthode copiée." : "Copie indisponible sur ce navigateur.";
+    window.clearTimeout(copyTimer);
+    copyTimer = window.setTimeout(() => { status.textContent = ""; }, 2800);
   });
 
   // Raccourci clavier de recherche (Cmd/Ctrl + K).
