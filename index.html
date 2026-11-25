@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#d62300">
   <meta name="description" content="Carte mentale interactive pour préparer l'examen oral Burger King M2 : stratégie, concept, média, budget, planning et objections.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Burger King — Carte mentale de l'oral">
+  <meta property="og:description" content="Carte mentale interactive pour préparer l'examen oral Burger King M2 : stratégie, concept, média, budget, planning et objections.">
   <title>Burger King — Carte mentale de l'oral</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -34,7 +38,7 @@
           <span>6 blocs à maîtriser</span><b>·</b><span>17 objections d'entraînement</span><b>·</b><span>4–5 min à l'oral</span>
         </div>
       </div>
-      <div class="hero-stamp" aria-label="2,2 millions d'euros hors taxes">
+      <div class="hero-stamp" role="group" aria-label="2,2 millions d'euros hors taxes">
         <span>BUDGET GLOBAL</span><strong>2,2 M€</strong><small>HT · CAMPAGNE</small>
         <div class="stamp-ring"></div>
       </div>
@@ -61,7 +65,7 @@
           <span>Créer un événement · Générer du trafic restaurant · Booster les ventes</span>
         </div>
         <div class="trunk" aria-hidden="true"><span></span></div>
-        <div class="branch-grid" id="topicGrid" aria-label="Branches de la carte mentale"></div>
+        <div class="branch-grid" id="topicGrid" role="group" aria-label="Branches de la carte mentale"></div>
       </div>
       <div class="legend"><span><i class="legend-dot dot-red"></i> Enjeu client</span><span><i class="legend-dot dot-gold"></i> Stratégie & création</span><span><i class="legend-dot dot-orange"></i> Activation média</span><span><i class="legend-dot dot-violet"></i> Budget</span><span><i class="legend-dot dot-teal"></i> Planning</span><span><i class="legend-dot dot-ink"></i> Entretien</span></div>
     </section>
@@ -72,8 +76,8 @@
         <button class="button button-red" id="drawBtn" type="button"><span aria-hidden="true">⤨</span> Tirer une objection</button>
       </div>
       <div class="tool-row">
-        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Rechercher : budget, chefs, TV, délais…" autocomplete="off"><kbd>⌘ K</kbd></label>
-        <div class="filter-row" id="filters" aria-label="Filtrer les objections">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" aria-label="Rechercher une objection" placeholder="Rechercher : budget, chefs, TV, délais…" autocomplete="off"><kbd>⌘ K</kbd></label>
+        <div class="filter-row" id="filters" role="group" aria-label="Filtrer les objections">
           <button class="filter-chip selected" data-filter="all" type="button">Toutes</button>
           <button class="filter-chip" data-filter="concept" type="button">Concept</button>
           <button class="filter-chip" data-filter="media" type="button">Média</button>

@@ -15,7 +15,7 @@ window.BK_CONTENT = {
       intro: "Le point de départ : relancer Les Masters sans refaire simplement la même opération.",
       groups: [
         { label: "📌 FAITS DU BRIEF", items: [
-          "Pour la rentrée, la Direction Marketing de BURGER KING® France veut relancer sa gamme premium « Les Masters ». ",
+          "Pour la rentrée, la Direction Marketing de BURGER KING® France veut relancer sa gamme premium « Les Masters ».",
           "Les opérations précédentes — Master Sarran puis Master Pairet — ont très bien fonctionné.",
           "La marque identifie néanmoins un risque d'effet de lassitude.",
           "Le brief demande un événement médiatique fort, du trafic en restaurant et une hausse des ventes."
