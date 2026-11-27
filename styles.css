@@ -301,3 +301,50 @@ a { color: inherit; }
   a { text-decoration: none; }
   .site-footer { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
+
+/* MasterChef — fiche de travail utilisable sur ordinateur et téléphone */
+html{scroll-padding-top:100px}
+.site-header{position:sticky;top:0;z-index:45}
+.header-inner{width:min(100%,1400px);padding-inline:clamp(14px,3vw,34px)}
+.main-nav{position:sticky;top:76px;z-index:40;gap:4px}
+.nav-link{display:inline-flex;min-height:46px;align-items:center;padding:9px 14px;font-size:11px}
+.button,.button-red,.text-button,.filter-chip{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.button,.button-red{min-height:44px}
+.filter-chip{min-height:40px;padding:8px 13px;font-size:11px}
+.search-box input{min-height:46px;font-size:16px}
+.section{width:min(100%,1320px);margin-inline:auto;padding-inline:clamp(14px,2.4vw,30px);scroll-margin-top:126px}
+.section-subtitle{max-width:760px;line-height:1.65}
+.branch-card summary,.objection-card summary{min-height:50px}
+.branch-card p,.objection-card p,.flow-step p,.safe-answer p{font-size:14px;line-height:1.7}
+.branch-grid{gap:14px}
+.objection-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));align-items:start}
+@media(max-width:900px){
+  .header-inner{flex-wrap:wrap;gap:10px}
+  .main-nav{top:0;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .main-nav::-webkit-scrollbar{height:3px}
+  .nav-link{flex:0 0 auto;min-height:44px}
+  .hero{min-height:0}
+  .branch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .objection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filter-row{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+  .filter-chip{flex:0 0 auto;white-space:nowrap}
+}
+@media(max-width:650px){
+  .site-header{position:relative}
+  .main-nav{position:sticky;top:0;background:var(--cream);padding:4px 10px}
+  .hero{padding-block:26px}
+  .hero-content{gap:14px}
+  .hero-meta{flex-wrap:wrap;font-size:12px}
+  .section{padding-inline:14px}
+  .section-heading{align-items:flex-start;flex-direction:column;gap:12px}
+  .branch-grid,.objection-grid{grid-template-columns:minmax(0,1fr)}
+  .mindmap{overflow:visible}
+  .branch-card summary,.objection-card summary{min-height:54px;padding:13px 14px}
+  .tool-row{align-items:stretch;flex-direction:column}
+  .search-box input{width:100%;font-size:16px}
+  .oral-flow{gap:12px}
+  .oral-bottom-grid,.vigilance-layout{grid-template-columns:minmax(0,1fr)}
+  .assets-section .asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .site-footer{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.branch-card,.objection-card,.nav-link{transition:none!important}}
