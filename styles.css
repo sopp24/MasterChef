@@ -348,3 +348,7 @@ html{scroll-padding-top:100px}
   .site-footer{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){.branch-card,.objection-card,.nav-link{transition:none!important}}
+
+
+/* MasterChef — les filtres restent confortables au toucher */
+.filter-chip{min-height:44px}
